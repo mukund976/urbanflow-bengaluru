@@ -1,0 +1,651 @@
+{
+  "kpis": {
+    "records": 100000,
+    "avg_vehicle": 3288.63,
+    "avg_speed": 27.39,
+    "avg_time": 19.71,
+    "congestion": 0.707,
+    "reliability": 0.697,
+    "accident_rate": 0.99,
+    "accidents": 991
+  },
+  "area": [
+    {
+      "area": "Banashankari",
+      "records": 6987,
+      "avg_vehicle": 1784.31,
+      "avg_speed": 24.239,
+      "avg_time": 20.912,
+      "congestion": 0.558,
+      "reliability": 0.771,
+      "risk": 35.886,
+      "accidents": 66,
+      "lat": 12.925,
+      "lon": 77.547
+    },
+    {
+      "area": "Electronic City",
+      "records": 9111,
+      "avg_vehicle": 4176.98,
+      "avg_speed": 35.22,
+      "avg_time": 14.82,
+      "congestion": 0.696,
+      "reliability": 0.701,
+      "risk": 46.13,
+      "accidents": 94,
+      "lat": 12.845,
+      "lon": 77.66
+    },
+    {
+      "area": "Hebbal",
+      "records": 7900,
+      "avg_vehicle": 4024.971,
+      "avg_speed": 34.894,
+      "avg_time": 15.028,
+      "congestion": 0.706,
+      "reliability": 0.695,
+      "risk": 46.643,
+      "accidents": 68,
+      "lat": 13.036,
+      "lon": 77.597
+    },
+    {
+      "area": "Indiranagar",
+      "records": 6945,
+      "avg_vehicle": 2131.599,
+      "avg_speed": 23.083,
+      "avg_time": 22.425,
+      "congestion": 0.627,
+      "reliability": 0.735,
+      "risk": 38.97,
+      "accidents": 72,
+      "lat": 12.979,
+      "lon": 77.641
+    },
+    {
+      "area": "Jayanagar",
+      "records": 6093,
+      "avg_vehicle": 1921.744,
+      "avg_speed": 23.722,
+      "avg_time": 21.493,
+      "congestion": 0.582,
+      "reliability": 0.756,
+      "risk": 37.039,
+      "accidents": 56,
+      "lat": 12.925,
+      "lon": 77.594
+    },
+    {
+      "area": "KR Puram",
+      "records": 8944,
+      "avg_vehicle": 4170.31,
+      "avg_speed": 34.054,
+      "avg_time": 15.646,
+      "congestion": 0.745,
+      "reliability": 0.677,
+      "risk": 48.245,
+      "accidents": 100,
+      "lat": 13.008,
+      "lon": 77.695
+    },
+    {
+      "area": "Koramangala",
+      "records": 9097,
+      "avg_vehicle": 2412.446,
+      "avg_speed": 22.1,
+      "avg_time": 23.669,
+      "congestion": 0.689,
+      "reliability": 0.705,
+      "risk": 41.832,
+      "accidents": 83,
+      "lat": 12.935,
+      "lon": 77.624
+    },
+    {
+      "area": "MG Road",
+      "records": 7090,
+      "avg_vehicle": 2419.583,
+      "avg_speed": 22.334,
+      "avg_time": 23.209,
+      "congestion": 0.672,
+      "reliability": 0.712,
+      "risk": 41.137,
+      "accidents": 72,
+      "lat": 12.975,
+      "lon": 77.607
+    },
+    {
+      "area": "Marathahalli",
+      "records": 9914,
+      "avg_vehicle": 3845.448,
+      "avg_speed": 25.994,
+      "avg_time": 20.71,
+      "congestion": 0.801,
+      "reliability": 0.654,
+      "risk": 48.861,
+      "accidents": 92,
+      "lat": 12.957,
+      "lon": 77.701
+    },
+    {
+      "area": "Silk Board",
+      "records": 11064,
+      "avg_vehicle": 4443.04,
+      "avg_speed": 25.218,
+      "avg_time": 21.474,
+      "congestion": 0.854,
+      "reliability": 0.634,
+      "risk": 51.081,
+      "accidents": 109,
+      "lat": 12.918,
+      "lon": 77.623
+    },
+    {
+      "area": "Whitefield",
+      "records": 9921,
+      "avg_vehicle": 3816.556,
+      "avg_speed": 26.605,
+      "avg_time": 20.176,
+      "congestion": 0.763,
+      "reliability": 0.669,
+      "risk": 47.231,
+      "accidents": 110,
+      "lat": 12.97,
+      "lon": 77.75
+    },
+    {
+      "area": "Yeshwanthpur",
+      "records": 6934,
+      "avg_vehicle": 2665.652,
+      "avg_speed": 29.317,
+      "avg_time": 17.512,
+      "congestion": 0.62,
+      "reliability": 0.737,
+      "risk": 40.617,
+      "accidents": 69,
+      "lat": 13.025,
+      "lon": 77.534
+    }
+  ],
+  "hour": [
+    {
+      "hour": 0,
+      "avg_vehicle": 1191.44,
+      "avg_speed": 34.615,
+      "avg_time": 14.493,
+      "congestion": 0.255
+    },
+    {
+      "hour": 1,
+      "avg_vehicle": 1193.711,
+      "avg_speed": 34.606,
+      "avg_time": 14.544,
+      "congestion": 0.256
+    },
+    {
+      "hour": 2,
+      "avg_vehicle": 1184.77,
+      "avg_speed": 34.605,
+      "avg_time": 14.652,
+      "congestion": 0.255
+    },
+    {
+      "hour": 3,
+      "avg_vehicle": 1191.306,
+      "avg_speed": 34.852,
+      "avg_time": 14.445,
+      "congestion": 0.255
+    },
+    {
+      "hour": 4,
+      "avg_vehicle": 1189.402,
+      "avg_speed": 34.721,
+      "avg_time": 14.494,
+      "congestion": 0.255
+    },
+    {
+      "hour": 5,
+      "avg_vehicle": 1195.596,
+      "avg_speed": 34.682,
+      "avg_time": 14.422,
+      "congestion": 0.256
+    },
+    {
+      "hour": 6,
+      "avg_vehicle": 2556.347,
+      "avg_speed": 32.726,
+      "avg_time": 15.437,
+      "congestion": 0.551
+    },
+    {
+      "hour": 7,
+      "avg_vehicle": 4840.913,
+      "avg_speed": 20.917,
+      "avg_time": 24.72,
+      "congestion": 1.037
+    },
+    {
+      "hour": 8,
+      "avg_vehicle": 4852.162,
+      "avg_speed": 20.747,
+      "avg_time": 24.682,
+      "congestion": 1.042
+    },
+    {
+      "hour": 9,
+      "avg_vehicle": 4791.906,
+      "avg_speed": 20.816,
+      "avg_time": 24.878,
+      "congestion": 1.036
+    },
+    {
+      "hour": 10,
+      "avg_vehicle": 4860.697,
+      "avg_speed": 20.78,
+      "avg_time": 24.713,
+      "congestion": 1.043
+    },
+    {
+      "hour": 11,
+      "avg_vehicle": 3580.59,
+      "avg_speed": 26.401,
+      "avg_time": 19.257,
+      "congestion": 0.772
+    },
+    {
+      "hour": 12,
+      "avg_vehicle": 3629.532,
+      "avg_speed": 26.228,
+      "avg_time": 19.536,
+      "congestion": 0.783
+    },
+    {
+      "hour": 13,
+      "avg_vehicle": 3654.075,
+      "avg_speed": 26.232,
+      "avg_time": 19.38,
+      "congestion": 0.785
+    },
+    {
+      "hour": 14,
+      "avg_vehicle": 3643.203,
+      "avg_speed": 26.055,
+      "avg_time": 19.478,
+      "congestion": 0.786
+    },
+    {
+      "hour": 15,
+      "avg_vehicle": 3647.608,
+      "avg_speed": 26.597,
+      "avg_time": 19.155,
+      "congestion": 0.78
+    },
+    {
+      "hour": 16,
+      "avg_vehicle": 3679.454,
+      "avg_speed": 26.2,
+      "avg_time": 19.373,
+      "congestion": 0.789
+    },
+    {
+      "hour": 17,
+      "avg_vehicle": 5454.567,
+      "avg_speed": 18.693,
+      "avg_time": 27.668,
+      "congestion": 1.17
+    },
+    {
+      "hour": 18,
+      "avg_vehicle": 5424.692,
+      "avg_speed": 18.925,
+      "avg_time": 27.361,
+      "congestion": 1.164
+    },
+    {
+      "hour": 19,
+      "avg_vehicle": 5412.801,
+      "avg_speed": 18.747,
+      "avg_time": 27.614,
+      "congestion": 1.165
+    },
+    {
+      "hour": 20,
+      "avg_vehicle": 5408.57,
+      "avg_speed": 18.988,
+      "avg_time": 27.352,
+      "congestion": 1.16
+    },
+    {
+      "hour": 21,
+      "avg_vehicle": 2595.805,
+      "avg_speed": 32.645,
+      "avg_time": 15.529,
+      "congestion": 0.559
+    },
+    {
+      "hour": 22,
+      "avg_vehicle": 2537.108,
+      "avg_speed": 32.737,
+      "avg_time": 15.411,
+      "congestion": 0.55
+    },
+    {
+      "hour": 23,
+      "avg_vehicle": 1195.916,
+      "avg_speed": 34.799,
+      "avg_time": 14.463,
+      "congestion": 0.256
+    }
+  ],
+  "weather": [
+    {
+      "weather_condition": "Clear",
+      "records": 47996,
+      "avg_speed": 30.189,
+      "avg_time": 17.241,
+      "congestion": 0.684,
+      "rainfall": 0.0,
+      "reliability": 0.768
+    },
+    {
+      "weather_condition": "Cloudy",
+      "records": 23963,
+      "avg_speed": 28.402,
+      "avg_time": 18.465,
+      "congestion": 0.698,
+      "rainfall": 0.2,
+      "reliability": 0.724
+    },
+    {
+      "weather_condition": "Fog",
+      "records": 3011,
+      "avg_speed": 20.069,
+      "avg_time": 26.425,
+      "congestion": 0.759,
+      "rainfall": 0.0,
+      "reliability": 0.513
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "records": 7999,
+      "avg_speed": 17.467,
+      "avg_time": 30.865,
+      "congestion": 0.788,
+      "rainfall": 18.078,
+      "reliability": 0.445
+    },
+    {
+      "weather_condition": "Light Rain",
+      "records": 17031,
+      "avg_speed": 24.012,
+      "avg_time": 21.984,
+      "congestion": 0.735,
+      "rainfall": 3.185,
+      "reliability": 0.61
+    }
+  ],
+  "month": [
+    {
+      "month": 1,
+      "month_name": "Jan",
+      "avg_vehicle": 3309.477,
+      "avg_speed": 27.258,
+      "avg_time": 19.717,
+      "congestion": 0.71,
+      "accidents": 101
+    },
+    {
+      "month": 2,
+      "month_name": "Feb",
+      "avg_vehicle": 3295.917,
+      "avg_speed": 27.307,
+      "avg_time": 19.688,
+      "congestion": 0.709,
+      "accidents": 70
+    },
+    {
+      "month": 3,
+      "month_name": "Mar",
+      "avg_vehicle": 3258.301,
+      "avg_speed": 27.455,
+      "avg_time": 19.619,
+      "congestion": 0.702,
+      "accidents": 90
+    },
+    {
+      "month": 4,
+      "month_name": "Apr",
+      "avg_vehicle": 3301.821,
+      "avg_speed": 27.36,
+      "avg_time": 19.825,
+      "congestion": 0.71,
+      "accidents": 81
+    },
+    {
+      "month": 5,
+      "month_name": "May",
+      "avg_vehicle": 3270.841,
+      "avg_speed": 27.486,
+      "avg_time": 19.594,
+      "congestion": 0.706,
+      "accidents": 90
+    },
+    {
+      "month": 6,
+      "month_name": "Jun",
+      "avg_vehicle": 3285.821,
+      "avg_speed": 27.491,
+      "avg_time": 19.778,
+      "congestion": 0.706,
+      "accidents": 85
+    },
+    {
+      "month": 7,
+      "month_name": "Jul",
+      "avg_vehicle": 3282.193,
+      "avg_speed": 27.577,
+      "avg_time": 19.569,
+      "congestion": 0.704,
+      "accidents": 86
+    },
+    {
+      "month": 8,
+      "month_name": "Aug",
+      "avg_vehicle": 3259.298,
+      "avg_speed": 27.46,
+      "avg_time": 19.574,
+      "congestion": 0.701,
+      "accidents": 90
+    },
+    {
+      "month": 9,
+      "month_name": "Sep",
+      "avg_vehicle": 3291.234,
+      "avg_speed": 27.56,
+      "avg_time": 19.595,
+      "congestion": 0.704,
+      "accidents": 74
+    },
+    {
+      "month": 10,
+      "month_name": "Oct",
+      "avg_vehicle": 3290.192,
+      "avg_speed": 27.242,
+      "avg_time": 19.729,
+      "congestion": 0.709,
+      "accidents": 69
+    },
+    {
+      "month": 11,
+      "month_name": "Nov",
+      "avg_vehicle": 3314.438,
+      "avg_speed": 27.287,
+      "avg_time": 19.829,
+      "congestion": 0.711,
+      "accidents": 86
+    },
+    {
+      "month": 12,
+      "month_name": "Dec",
+      "avg_vehicle": 3305.789,
+      "avg_speed": 27.157,
+      "avg_time": 19.987,
+      "congestion": 0.712,
+      "accidents": 69
+    }
+  ],
+  "routes": [
+    {
+      "route_name": "BTM Layout - Silk Board - HSR Layout",
+      "area": "Silk Board",
+      "avg_speed": 25.218,
+      "avg_time": 21.474,
+      "congestion": 0.854,
+      "reliability": 0.634,
+      "efficiency": 50.19,
+      "risk": 51.081
+    },
+    {
+      "route_name": "Domlur - Indiranagar - Old Madras Road",
+      "area": "Indiranagar",
+      "avg_speed": 23.083,
+      "avg_time": 22.425,
+      "congestion": 0.627,
+      "reliability": 0.735,
+      "efficiency": 58.56,
+      "risk": 38.97
+    },
+    {
+      "route_name": "HAL - Marathahalli - Whitefield",
+      "area": "Marathahalli",
+      "avg_speed": 25.994,
+      "avg_time": 20.71,
+      "congestion": 0.801,
+      "reliability": 0.654,
+      "efficiency": 53.98,
+      "risk": 48.861
+    },
+    {
+      "route_name": "Jayanagar - Banashankari - Uttarahalli",
+      "area": "Banashankari",
+      "avg_speed": 24.239,
+      "avg_time": 20.912,
+      "congestion": 0.558,
+      "reliability": 0.771,
+      "efficiency": 67.21,
+      "risk": 35.886
+    },
+    {
+      "route_name": "KR Puram - Whitefield - ITPL",
+      "area": "Whitefield",
+      "avg_speed": 26.605,
+      "avg_time": 20.176,
+      "congestion": 0.763,
+      "reliability": 0.669,
+      "efficiency": 58.099,
+      "risk": 47.231
+    },
+    {
+      "route_name": "Mekhri Circle - Hebbal - Airport Road",
+      "area": "Hebbal",
+      "avg_speed": 34.894,
+      "avg_time": 15.028,
+      "congestion": 0.706,
+      "reliability": 0.695,
+      "efficiency": 80.544,
+      "risk": 46.643
+    },
+    {
+      "route_name": "Silk Board - Hosur Road - Electronic City",
+      "area": "Electronic City",
+      "avg_speed": 35.22,
+      "avg_time": 14.82,
+      "congestion": 0.696,
+      "reliability": 0.701,
+      "efficiency": 82.33,
+      "risk": 46.13
+    },
+    {
+      "route_name": "Sony Signal - Koramangala - Ejipura",
+      "area": "Koramangala",
+      "avg_speed": 22.1,
+      "avg_time": 23.669,
+      "congestion": 0.689,
+      "reliability": 0.705,
+      "efficiency": 51.419,
+      "risk": 41.832
+    },
+    {
+      "route_name": "South End Circle - Jayanagar - JP Nagar",
+      "area": "Jayanagar",
+      "avg_speed": 23.722,
+      "avg_time": 21.493,
+      "congestion": 0.582,
+      "reliability": 0.756,
+      "efficiency": 63.556,
+      "risk": 37.039
+    },
+    {
+      "route_name": "Tin Factory - KR Puram - Whitefield",
+      "area": "KR Puram",
+      "avg_speed": 34.054,
+      "avg_time": 15.646,
+      "congestion": 0.745,
+      "reliability": 0.677,
+      "efficiency": 75.594,
+      "risk": 48.245
+    },
+    {
+      "route_name": "Trinity - MG Road - Cubbon Road",
+      "area": "MG Road",
+      "avg_speed": 22.334,
+      "avg_time": 23.209,
+      "congestion": 0.672,
+      "reliability": 0.712,
+      "efficiency": 52.917,
+      "risk": 41.137
+    },
+    {
+      "route_name": "Tumkur Road - Yeshwanthpur - Rajajinagar",
+      "area": "Yeshwanthpur",
+      "avg_speed": 29.317,
+      "avg_time": 17.512,
+      "congestion": 0.62,
+      "reliability": 0.737,
+      "efficiency": 75.165,
+      "risk": 40.617
+    }
+  ],
+  "cat": [
+    {
+      "congestion_category": "High",
+      "count": 18071
+    },
+    {
+      "congestion_category": "Low",
+      "count": 44318
+    },
+    {
+      "congestion_category": "Moderate",
+      "count": 24245
+    },
+    {
+      "congestion_category": "Severe",
+      "count": 13366
+    }
+  ],
+  "severity": [
+    {
+      "accident_severity": "Minor",
+      "count": 615
+    },
+    {
+      "accident_severity": "Moderate",
+      "count": 285
+    },
+    {
+      "accident_severity": "Severe",
+      "count": 91
+    }
+  ]
+}

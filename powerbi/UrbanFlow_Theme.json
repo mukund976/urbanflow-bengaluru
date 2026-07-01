@@ -1,0 +1,42 @@
+{
+  "name": "UrbanFlow Bengaluru Dark Mobility Theme",
+  "dataColors": [
+    "#F97316",
+    "#38BDF8",
+    "#22C55E",
+    "#FACC15",
+    "#EF4444",
+    "#A78BFA",
+    "#14B8A6",
+    "#FB7185"
+  ],
+  "background": "#07111F",
+  "foreground": "#EAF2FF",
+  "tableAccent": "#38BDF8",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#0D1B2F" } }, "transparency": 5 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#203A5F" } }, "radius": 12 }],
+        "title": [{ "color": { "solid": { "color": "#EAF2FF" } }, "fontSize": 12, "fontFamily": "Segoe UI Semibold" }],
+        "labels": [{ "color": { "solid": { "color": "#B8C7DD" } }, "fontSize": 10 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#FFFFFF" } }, "fontSize": 24, "fontFamily": "Segoe UI Semibold" }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#9FB4D1" } }, "fontSize": 10 }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [{ "fontColor": { "solid": { "color": "#EAF2FF" } }, "background": { "solid": { "color": "#10243E" } } }]
+      }
+    }
+  },
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "color": "#FFFFFF", "fontSize": 18 },
+    "header": { "fontFace": "Segoe UI Semibold", "color": "#EAF2FF", "fontSize": 14 },
+    "label": { "fontFace": "Segoe UI", "color": "#9FB4D1", "fontSize": 10 }
+  }
+}

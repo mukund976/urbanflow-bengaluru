@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanFlow Bengaluru | Traffic Intelligence & Mobility Analytics</title>
+  <meta name="description" content="UrbanFlow Bengaluru Traffic Analytics and Mobility Insights project with SQL, BI dashboards, weather impact analytics, route reliability, safety risk and geospatial insights." />
+  <style>
+    :root{
+      --ink:#eef7ff;--muted:#9bb1ca;--muted2:#7187a2;--void:#030711;--navy:#07111f;--card:#0b1729cc;--card2:#10243ecc;--line:#ffffff18;
+      --orange:#ff7a18;--orange2:#ffb000;--cyan:#38d5ff;--blue:#3b82f6;--green:#2cff8f;--red:#ff3d57;--purple:#a855f7;--yellow:#fde047;
+      --shadow:0 30px 100px #0009;--radius:28px;--radius2:18px;--glass:linear-gradient(180deg,#ffffff12,#ffffff05);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--void);line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1220px,92vw);margin:auto}.hide{display:none!important}
+    body:before{content:"";position:fixed;inset:0;z-index:-4;background:radial-gradient(circle at 12% 7%,#184c87 0,#07111f 31%,transparent 56%),radial-gradient(circle at 88% 12%,#62237b 0,transparent 34%),radial-gradient(circle at 58% 100%,#5f2a08 0,transparent 42%),#030711}.noise{position:fixed;inset:0;z-index:-2;opacity:.12;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}.grid-bg{position:fixed;inset:0;z-index:-3;opacity:.18;background-image:linear-gradient(#6bbcff18 1px,transparent 1px),linear-gradient(90deg,#6bbcff18 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+    .orb{position:fixed;border-radius:999px;filter:blur(24px);opacity:.28;z-index:-1;animation:float 11s ease-in-out infinite}.orb.one{width:280px;height:280px;left:-90px;top:120px;background:var(--cyan)}.orb.two{width:360px;height:360px;right:-120px;top:320px;background:var(--orange);animation-delay:-4s}.orb.three{width:240px;height:240px;left:44%;bottom:-90px;background:var(--purple);animation-delay:-8s}@keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(24px,-34px,0) scale(1.08)}}
+    .topbar{height:34px;background:linear-gradient(90deg,#ff7a18,#38d5ff,#a855f7);display:flex;align-items:center;justify-content:center;color:#06101d;font-weight:950;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}.nav{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line);background:#06101bd1;backdrop-filter:blur(24px)}.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:13px;font-weight:1000;letter-spacing:-.04em;font-size:1.25rem}.logo{position:relative;width:48px;height:48px;border-radius:17px;display:grid;place-items:center;background:conic-gradient(from 140deg,var(--orange),var(--cyan),var(--purple),var(--orange));box-shadow:0 0 38px #38d5ff42}.logo:after{content:"🚦";position:absolute;inset:4px;border-radius:14px;background:#07111f;display:grid;place-items:center}.nav-links{display:flex;gap:3px;align-items:center;background:#ffffff0a;border:1px solid var(--line);padding:5px;border-radius:999px}.nav-links a{padding:10px 13px;border-radius:999px;color:var(--muted);font-weight:800;font-size:.9rem}.nav-links a:hover{background:#ffffff12;color:#fff}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;border-radius:999px;border:1px solid var(--line);background:#ffffff0c;color:#fff;font-weight:950;box-shadow:0 14px 34px #0004;transition:.25s}.btn:hover{transform:translateY(-3px);background:#ffffff16}.btn.primary{border:0;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#130a02;box-shadow:0 18px 50px #ff7a1845}.btn.cyan{border:0;background:linear-gradient(135deg,#1db9ff,var(--cyan));color:#03101c}.btn.ghost{box-shadow:none}.menu{display:none}
+    .hero{position:relative;padding:78px 0 56px;overflow:hidden}.hero:after{content:"";position:absolute;inset:auto 0 -1px;height:150px;background:linear-gradient(to bottom,transparent,var(--void));pointer-events:none}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:46px;align-items:center}.eyebrow{display:inline-flex;gap:10px;align-items:center;padding:9px 14px;border:1px solid #38d5ff4a;border-radius:999px;background:#38d5ff12;color:#d8f8ff;font-weight:950;font-size:.88rem}.pulse{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 #2cff8f;animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 12px #2cff8f00}}h1{font-size:clamp(3rem,7vw,6.7rem);line-height:.88;margin:22px 0 18px;letter-spacing:-.075em}.grad{background:linear-gradient(180deg,#fff 0,#d8ecff 48%,#7ddcff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:1.16rem;max-width:710px}.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin:28px 0}.micro{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted2);font-weight:800;font-size:.92rem}.micro span{display:flex;gap:8px;align-items:center}.micro b{color:#fff}.command{position:relative;min-height:560px;border:1px solid var(--line);border-radius:38px;background:linear-gradient(145deg,#10243ecc,#06101dcc);box-shadow:var(--shadow);overflow:hidden;padding:18px}.command:before{content:"";position:absolute;inset:-1px;background:linear-gradient(120deg,#38d5ff00,#38d5ff44,#ff7a1844,#0000);opacity:.65;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);padding:1px;-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}.screen-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.dots{display:flex;gap:7px}.dots i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}.live{color:#9fffd0;font-weight:900;font-size:.82rem}.dash-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.mini-card{border:1px solid var(--line);border-radius:23px;background:#06101d91;padding:18px;box-shadow:inset 0 1px #ffffff12}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{padding:13px;border-radius:17px;background:var(--glass);border:1px solid var(--line)}.metric small{display:block;color:var(--muted);font-weight:850}.metric b{font-size:1.55rem;letter-spacing:-.04em}.route-map{height:276px;position:relative;overflow:hidden}.route-map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.78}.map-pin{position:absolute;transform:translate(-50%,-50%)}.map-pin:before{content:"";display:block;width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 8px #ff7a1830,0 0 32px #ff7a18}.map-pin.red:before{background:var(--red);box-shadow:0 0 0 8px #ff3d5730,0 0 32px #ff3d57}.map-pin.cyan:before{background:var(--cyan);box-shadow:0 0 0 8px #38d5ff30,0 0 32px #38d5ff}.map-pin label{position:absolute;top:21px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#020817dd;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:#dff4ff;font-size:.74rem;font-weight:900}.bars{height:180px;display:flex;align-items:end;gap:9px;padding:18px 0 6px}.bar{flex:1;border-radius:14px 14px 5px 5px;background:linear-gradient(180deg,#38d5ff,#1452b8);position:relative;min-height:18px;box-shadow:0 0 25px #38d5ff22}.bar.hot{background:linear-gradient(180deg,#ffb000,#ff3d57);box-shadow:0 0 25px #ff7a1825}.bar span{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);font-size:.7rem;color:var(--muted);font-weight:900}.risk-list{display:grid;gap:10px}.risk{display:grid;grid-template-columns:1fr 58px;gap:10px;align-items:center}.risk .track{height:9px;border-radius:999px;background:#ffffff12;overflow:hidden}.risk .fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--green),var(--yellow),var(--red))}.risk b{font-size:.86rem}.risk em{font-style:normal;color:var(--muted);font-weight:900;text-align:right}
+    .section{padding:72px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:26px;margin-bottom:26px}.kicker{color:var(--cyan);font-weight:1000;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem}.section h2{font-size:clamp(2rem,4vw,3.5rem);line-height:.95;margin:8px 0 0;letter-spacing:-.06em}.lead{color:var(--muted);font-size:1.05rem;max-width:760px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--glass),#0b1729b8;box-shadow:var(--shadow);padding:24px;overflow:hidden}.card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 0,#38d5ff14,transparent 35%),radial-gradient(circle at 100% 100%,#ff7a1812,transparent 35%);pointer-events:none}.card>*{position:relative}.feature{min-height:230px}.feature .icon{width:52px;height:52px;border-radius:19px;display:grid;place-items:center;background:linear-gradient(135deg,#ffffff15,#ffffff08);border:1px solid var(--line);font-size:1.5rem;margin-bottom:18px}.feature h3,.card h3{margin:0 0 9px;font-size:1.2rem;letter-spacing:-.03em}.feature p,.card p,.card li{color:var(--muted)}.tilt{transition:.25s}.tilt:hover{transform:translateY(-8px);border-color:#38d5ff66}.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}.kpi{padding:17px;border-radius:22px;background:#06101da8;border:1px solid var(--line)}.kpi small{display:block;color:var(--muted);font-weight:900}.kpi b{font-size:1.75rem;letter-spacing:-.055em}.kpi .delta{font-size:.75rem;color:#9fffd0;margin-top:5px;font-weight:950}.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px}.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#ffffff0c;border:1px solid var(--line);font-size:.78rem;font-weight:950;color:#dcecff}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px 11px;border-bottom:1px solid var(--line);text-align:left}.table th{color:#d8f8ff;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}.table td{color:var(--muted);font-weight:750}.status{padding:5px 9px;border-radius:999px;font-size:.74rem;font-weight:1000}.severe{background:#ff3d5724;color:#ffb3bd}.high{background:#ff7a1824;color:#ffd0ae}.moderate{background:#fde0471f;color:#fff2a3}.good{background:#2cff8f1f;color:#b7ffd4}.complex-chart{height:340px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}.radar{height:260px;display:grid;place-items:center}.donut{width:230px;height:230px;border-radius:50%;background:conic-gradient(var(--red) 0 18%,var(--orange) 18% 44%,var(--yellow) 44% 68%,var(--green) 68% 100%);position:relative;box-shadow:0 0 60px #38d5ff14}.donut:after{content:"Congestion\A Mix";white-space:pre;text-align:center;display:grid;place-items:center;position:absolute;inset:42px;border-radius:50%;background:#081322;color:#fff;font-weight:1000;font-size:1.2rem}.legend{display:grid;gap:12px}.legend div{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-weight:850}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px}.insight-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.big-bars{height:310px;display:flex;align-items:end;gap:14px;padding:28px 0 34px}.big-bars .bar{cursor:pointer}.big-bars .bar:after{content:attr(data-label);position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) rotate(-18deg);transform-origin:top center;white-space:nowrap;color:var(--muted);font-size:.75rem;font-weight:900}.big-bars .bar:hover{filter:brightness(1.25);transform:scaleY(1.02)}.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}.tab{border:1px solid var(--line);background:#ffffff0c;color:var(--muted);border-radius:999px;padding:10px 13px;font-weight:950;cursor:pointer}.tab.active{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#100902;border:0}.tab-panel{display:none}.tab-panel.active{display:block}.page-card{display:grid;grid-template-columns:58px 1fr;gap:14px;align-items:start}.page-no{width:52px;height:52px;border-radius:18px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:#02111d;font-weight:1000;font-size:1.15rem}.mock-pbi{min-height:520px;background:#06101d;border-radius:30px;border:1px solid var(--line);padding:16px;box-shadow:inset 0 1px #ffffff12}.pbi-top{height:42px;border-radius:18px;background:linear-gradient(90deg,#10243e,#0b1729);display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:var(--muted);font-weight:900}.pbi-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}.pbi-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pbi-card{border:1px solid var(--line);border-radius:18px;background:#ffffff09;padding:14px}.pbi-card b{font-size:1.5rem}.pbi-visual{height:220px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff09,#ffffff04);padding:14px}.download-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.download{display:block;position:relative;border:1px solid var(--line);border-radius:23px;background:#ffffff0b;padding:18px;overflow:hidden;transition:.25s}.download:after{content:"↓";position:absolute;right:16px;top:16px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#ffffff12;color:#fff}.download:hover{transform:translateY(-6px);border-color:#38d5ff66;background:#38d5ff12}.download b{display:block;font-size:1.05rem}.download small{color:var(--muted);font-weight:850}.github-box{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:linear-gradient(135deg,#0b1729,#10243e);border:1px solid #38d5ff38;border-radius:34px;padding:26px;box-shadow:0 0 80px #38d5ff14}.footer{border-top:1px solid var(--line);padding:40px 0 55px;color:var(--muted);background:#020711}.reveal{opacity:0;transform:translateY(20px);transition:.7s}.reveal.show{opacity:1;transform:none}
+    @media(max-width:1050px){.hero-grid,.insight-grid,.pbi-grid{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.nav-links{display:none}.menu{display:inline-flex}.command{min-height:auto}.download-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.topbar{font-size:.66rem}.hero{padding-top:45px}.grid-3,.grid-2,.grid-4,.dash-grid,.complex-chart{grid-template-columns:1fr}.kpis,.metric-row,.pbi-kpis{grid-template-columns:1fr 1fr}.section{padding:48px 0}.section-head{display:block}.github-box{grid-template-columns:1fr}.download-grid{grid-template-columns:1fr}h1{font-size:3.2rem}.nav-inner{height:68px}.btn{padding:11px 14px}.big-bars{gap:7px}.big-bars .bar:after{font-size:.62rem}.route-map{height:240px}}
+  </style>
+</head>
+<body>
+  <div class="noise"></div><div class="grid-bg"></div><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="logo"></span><span>UrbanFlow</span></a>
+      <div class="nav-links"><a href="#intelligence">Intelligence</a><a href="#insights">Insights</a><a href="dashboard.html">Dashboard</a></div>
+      <a class="btn primary" href="dashboard.html">Open Dashboard</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <span class="eyebrow"><span class="pulse"></span> Live-style portfolio dashboard for Bengaluru mobility analytics</span>
+          <h1><span class="grad">Traffic intelligence</span> for a city that never stops.</h1>
+          <p>UrbanFlow transforms Bengaluru traffic, weather, route, geospatial, and accident data into executive-ready mobility insights: congestion hotspots, peak-hour delays, rainfall impact, route reliability, and safety risk.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="dashboard.html">Open Final Dashboard</a>
+            <a class="btn cyan" href="#insights">View Insights</a>
+            <a class="btn" href="downloads/urbanflow_bengaluru_traffic.csv" download>Download Dataset</a>
+            <a class="btn ghost" href="#insights">View Findings</a>
+          </div>
+          <div class="micro"><span>✅ <b>100,000</b> records</span><span>📍 <b>12</b> Bengaluru zones</span><span>🧠 <b>5</b> KPI engines</span><span>🗺️ Geospatial analytics</span></div>
+        </div>
+
+        <div class="command reveal">
+          <div class="screen-top"><div class="dots"><i></i><i></i><i></i></div><span class="live">● ANALYTICS COMMAND CENTER</span></div>
+          <div class="dash-grid">
+            <div class="mini-card route-map">
+              <div class="panel-title"><h3>Bengaluru Congestion Mesh</h3><span class="chip">Map Layer</span></div>
+              <svg viewBox="0 0 600 330" preserveAspectRatio="none">
+                <defs><linearGradient id="road1" x1="0" x2="1"><stop stop-color="#38d5ff"/><stop offset="1" stop-color="#ff7a18"/></linearGradient></defs>
+                <path d="M35 248 C128 182 172 207 235 126 S385 54 555 86" stroke="url(#road1)" stroke-width="18" fill="none" stroke-linecap="round" opacity=".88"/>
+                <path d="M105 44 C160 120 238 151 318 224 S434 289 565 229" stroke="#a855f7" stroke-width="13" fill="none" stroke-linecap="round" opacity=".68"/>
+                <path d="M45 160 L565 160" stroke="#94a3b8" stroke-width="8" fill="none" stroke-linecap="round" opacity=".45"/>
+                <path d="M300 30 L282 305" stroke="#94a3b8" stroke-width="8" fill="none" stroke-linecap="round" opacity=".45"/>
+              </svg>
+              <div class="map-pin red" style="left:45%;top:53%"><label>Silk Board</label></div><div class="map-pin" style="left:66%;top:38%"><label>Marathahalli</label></div><div class="map-pin cyan" style="left:80%;top:29%"><label>Whitefield</label></div><div class="map-pin" style="left:71%;top:22%"><label>KR Puram</label></div><div class="map-pin cyan" style="left:42%;top:77%"><label>Electronic City</label></div>
+            </div>
+            <div class="mini-card">
+              <div class="panel-title"><h3>Risk Pulse</h3><span class="chip">Insight-ready</span></div>
+              <div class="risk-list">
+                <div class="risk"><b>Silk Board</b><div class="track"><div class="fill" style="width:92%"></div></div><em>92</em></div>
+                <div class="risk"><b>Whitefield</b><div class="track"><div class="fill" style="width:86%"></div></div><em>86</em></div>
+                <div class="risk"><b>KR Puram</b><div class="track"><div class="fill" style="width:81%"></div></div><em>81</em></div>
+                <div class="risk"><b>Marathahalli</b><div class="track"><div class="fill" style="width:78%"></div></div><em>78</em></div>
+                <div class="risk"><b>Hebbal</b><div class="track"><div class="fill" style="width:70%"></div></div><em>70</em></div>
+              </div>
+            </div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="metric-row">
+            <div class="metric"><small>Avg Vehicles</small><b data-count="3289">0</b></div>
+            <div class="metric"><small>Avg Speed</small><b data-count="27.39">0</b></div>
+            <div class="metric"><small>Accident Rate</small><b data-count="0.99">0</b></div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="mini-card"><div class="panel-title"><h3>Hourly Traffic Load</h3><span class="chip">Peak 5–8 PM</span></div><div class="bars"><div class="bar" style="height:38%"><span>6</span></div><div class="bar" style="height:74%"><span>8</span></div><div class="bar hot" style="height:78%"><span>10</span></div><div class="bar" style="height:47%"><span>13</span></div><div class="bar" style="height:55%"><span>15</span></div><div class="bar hot" style="height:96%"><span>17</span></div><div class="bar hot" style="height:94%"><span>18</span></div><div class="bar hot" style="height:93%"><span>19</span></div><div class="bar hot" style="height:92%"><span>20</span></div><div class="bar" style="height:42%"><span>22</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="intelligence" class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="kicker">Analytics Intelligence Stack</div><h2>From raw traffic records to city-level decisions.</h2><p class="lead">The project is structured like a real BI delivery: dataset, data engineering, SQL analysis, KPI design, dashboard pages, and deployment-ready website.</p></div></div>
+        <div class="grid-4">
+          <article class="card feature tilt reveal"><div class="icon">🚦</div><h3>Traffic Pattern Mining</h3><p>Hourly, daily, monthly, area-wise and route-wise congestion analysis for Bengaluru corridors.</p></article>
+          <article class="card feature tilt reveal"><div class="icon">🌧️</div><h3>Weather Disruption</h3><p>Quantifies speed degradation and travel-time inflation from heavy rain, fog and rainfall bands.</p></article>
+          <article class="card feature tilt reveal"><div class="icon">🧭</div><h3>Route Reliability</h3><p>Ranks routes using average speed, expected vs actual travel time, congestion load and efficiency.</p></article>
+          <article class="card feature tilt reveal"><div class="icon">🛡️</div><h3>Safety Risk Engine</h3><p>Detects accident-prone locations using congestion, weather severity, road type and incident patterns.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap card reveal">
+        <div class="section-head"><div><div class="kicker">Executive KPI Snapshot</div><h2>Mobility performance at a glance.</h2><p class="lead">Designed as top-row KPI cards for an executive command center.</p></div><span class="chip">Analytics dataset</span></div>
+        <div class="kpis">
+          <div class="kpi"><small>Total Records</small><b>100K</b><div class="delta">Portfolio scale</div></div>
+          <div class="kpi"><small>Avg Vehicle Count</small><b>3,289</b><div class="delta">Network load</div></div>
+          <div class="kpi"><small>Avg Speed</small><b>27.39</b><div class="delta">km/h</div></div>
+          <div class="kpi"><small>Avg Travel Time</small><b>19.71</b><div class="delta">minutes</div></div>
+          <div class="kpi"><small>Congestion Index</small><b>0.707</b><div class="delta">moderate-high</div></div>
+          <div class="kpi"><small>Accident Rate</small><b>0.99%</b><div class="delta">risk metric</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="insights" class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="kicker">Insight Storytelling</div><h2>Patterns hidden inside Bengaluru traffic.</h2><p class="lead">The website visualizes the complete mobility analytics storyline.</p></div></div>
+        <div class="insight-grid">
+          <div class="card reveal">
+            <div class="panel-title"><h3>Congestion Hotspot Ranking</h3><span class="chip">Avg congestion index</span></div>
+            <div class="big-bars">
+              <div class="bar hot" data-label="Silk Board" style="height:92%"><span>0.85</span></div>
+              <div class="bar hot" data-label="Marathahalli" style="height:86%"><span>0.80</span></div>
+              <div class="bar hot" data-label="Whitefield" style="height:82%"><span>0.76</span></div>
+              <div class="bar" data-label="KR Puram" style="height:80%"><span>0.74</span></div>
+              <div class="bar" data-label="Hebbal" style="height:76%"><span>0.71</span></div>
+              <div class="bar" data-label="Electronic City" style="height:75%"><span>0.70</span></div>
+              <div class="bar" data-label="Koramangala" style="height:74%"><span>0.69</span></div>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>Congestion Mix</h3>
+            <div class="complex-chart"><div class="radar"><div class="donut"></div></div><div class="legend"><div><span><i class="dot" style="background:var(--red)"></i>Severe</span><b>18%</b></div><div><span><i class="dot" style="background:var(--orange)"></i>High</span><b>26%</b></div><div><span><i class="dot" style="background:var(--yellow)"></i>Moderate</span><b>24%</b></div><div><span><i class="dot" style="background:var(--green)"></i>Low</span><b>32%</b></div></div></div>
+          </div>
+        </div>
+        <div style="height:18px"></div>
+        <div class="grid-2">
+          <div class="card reveal"><div class="panel-title"><h3>Weather Impact</h3><span class="chip">Travel disruption</span></div><table class="table"><thead><tr><th>Condition</th><th>Avg Speed</th><th>Travel Time</th><th>Status</th></tr></thead><tbody><tr><td>Heavy Rain</td><td>17.47 km/h</td><td>30.86 min</td><td><span class="status severe">Severe</span></td></tr><tr><td>Fog</td><td>20.07 km/h</td><td>26.43 min</td><td><span class="status high">High</span></td></tr><tr><td>Light Rain</td><td>24.01 km/h</td><td>21.98 min</td><td><span class="status moderate">Moderate</span></td></tr><tr><td>Clear</td><td>30.19 km/h</td><td>17.24 min</td><td><span class="status good">Stable</span></td></tr></tbody></table></div>
+          <div class="card reveal"><div class="panel-title"><h3>Accident Hotspots</h3><span class="chip">Incident count</span></div><table class="table"><thead><tr><th>Area</th><th>Accidents</th><th>Risk</th></tr></thead><tbody><tr><td>Whitefield</td><td>110</td><td><span class="status high">47.23</span></td></tr><tr><td>Silk Board</td><td>109</td><td><span class="status severe">51.08</span></td></tr><tr><td>KR Puram</td><td>100</td><td><span class="status high">48.25</span></td></tr><tr><td>Electronic City</td><td>94</td><td><span class="status moderate">46.13</span></td></tr></tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="footer"><div class="wrap"><b>UrbanFlow Bengaluru</b><br>Traffic Analytics & Mobility Insights Dashboard • Data Analytics & Mobility Intelligence Portfolio Project</div></footer>
+
+  <script>
+    const reveals=[...document.querySelectorAll('.reveal')];
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+    reveals.forEach(el=>io.observe(el));
+    const counters=[...document.querySelectorAll('[data-count]')];
+    const co=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting||e.target.dataset.done)return;e.target.dataset.done=1;let target=parseFloat(e.target.dataset.count),start=performance.now();function tick(t){let p=Math.min((t-start)/1100,1);let v=target*(1-Math.pow(1-p,3));e.target.textContent=target<10?v.toFixed(2):Math.round(v).toLocaleString();if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}),{threshold:.6});
+    counters.forEach(el=>co.observe(el));
+    document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active')}));
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+-- UrbanFlow Bengaluru KPI Measures
+-- Table name assumed: traffic_analytics
+
+Total Traffic Records = COUNTROWS(traffic_analytics)
+
+Total Vehicle Count = SUM(traffic_analytics[vehicle_count])
+
+Average Vehicle Count = AVERAGE(traffic_analytics[vehicle_count])
+
+Average Speed = AVERAGE(traffic_analytics[average_speed_kmph])
+
+Average Travel Time = AVERAGE(traffic_analytics[travel_time_min])
+
+Expected Travel Time = AVERAGE(traffic_analytics[expected_travel_time_min])
+
+Average Delay Minutes = [Average Travel Time] - [Expected Travel Time]
+
+Congestion Index = AVERAGE(traffic_analytics[congestion_index])
+
+Traffic Density Score = AVERAGE(traffic_analytics[traffic_density_score])
+
+Road Efficiency Score = AVERAGE(traffic_analytics[road_efficiency_score])
+
+Travel Reliability Score = AVERAGE(traffic_analytics[travel_reliability_score])
+
+Accident Count =
+CALCULATE(
+    COUNTROWS(traffic_analytics),
+    traffic_analytics[accident_reported] = "Yes"
+)
+
+Accident Rate % = DIVIDE([Accident Count], [Total Traffic Records], 0) * 100
+
+Average Accident Risk Score = AVERAGE(traffic_analytics[accident_risk_score])
+
+Rush Hour Avg Vehicles =
+CALCULATE([Average Vehicle Count], traffic_analytics[rush_hour_flag] = "Yes")
+
+Non Rush Hour Avg Vehicles =
+CALCULATE([Average Vehicle Count], traffic_analytics[rush_hour_flag] = "No")
+
+Rush Hour Lift % =
+DIVIDE([Rush Hour Avg Vehicles] - [Non Rush Hour Avg Vehicles], [Non Rush Hour Avg Vehicles], 0) * 100
+
+Rain Travel Time =
+CALCULATE([Average Travel Time], traffic_analytics[rainfall_mm] > 0)
+
+No Rain Travel Time =
+CALCULATE([Average Travel Time], traffic_analytics[rainfall_mm] = 0)
+
+Rainfall Delay Impact = [Rain Travel Time] - [No Rain Travel Time]
+
+Heavy Congestion Records =
+CALCULATE(
+    COUNTROWS(traffic_analytics),
+    traffic_analytics[congestion_category] IN {"High", "Severe"}
+)
+
+Heavy Congestion % = DIVIDE([Heavy Congestion Records], [Total Traffic Records], 0) * 100
+
+Severe Accident Count =
+CALCULATE(
+    COUNTROWS(traffic_analytics),
+    traffic_analytics[accident_severity] = "Severe"
+)
+
+Route Performance Score =
+VAR SpeedScore = DIVIDE([Average Speed], 50, 0) * 35
+VAR ReliabilityScore = [Travel Reliability Score] * 40
+VAR CongestionPenalty = [Congestion Index] * 15
+VAR RiskPenalty = DIVIDE([Average Accident Risk Score], 100, 0) * 10
+RETURN SpeedScore + ReliabilityScore - CongestionPenalty - RiskPenalty
+
+Congestion Status =
+SWITCH(
+    TRUE(),
+    [Congestion Index] >= 1.15, "Severe",
+    [Congestion Index] >= 0.90, "High",
+    [Congestion Index] >= 0.65, "Moderate",
+    "Low"
+)

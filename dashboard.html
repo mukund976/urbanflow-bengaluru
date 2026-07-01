@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanFlow Dashboard | Bengaluru Traffic Analytics</title>
+<style>
+:root{--bg:#050914;--panel:#0b1729;--panel2:#10243e;--text:#edf7ff;--muted:#9eb3cd;--line:#ffffff18;--orange:#ff7a18;--cyan:#38d5ff;--green:#22c55e;--red:#ff3d57;--yellow:#fde047;--purple:#a855f7;--shadow:0 24px 70px #0008}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0,#173e6d,transparent 35%),radial-gradient(circle at 100% 20%,#59206f,transparent 30%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}a{color:inherit;text-decoration:none}.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.side{position:sticky;top:0;height:100vh;background:#07101de8;border-right:1px solid var(--line);padding:22px;backdrop-filter:blur(18px);overflow:auto}.brand{display:flex;gap:12px;align-items:center;font-weight:1000;font-size:1.25rem;margin-bottom:28px}.logo{width:46px;height:46px;border-radius:16px;background:conic-gradient(var(--orange),var(--cyan),var(--purple),var(--orange));display:grid;place-items:center}.logo:after{content:'🚦';width:38px;height:38px;border-radius:13px;background:#07101d;display:grid;place-items:center}.nav button,.back{width:100%;display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:#ffffff08;color:var(--muted);border-radius:16px;padding:13px;margin:8px 0;font-weight:900;cursor:pointer;text-align:left}.nav button.active,.nav button:hover,.back:hover{background:linear-gradient(135deg,#ff7a18,#ffb000);color:#140a02;border-color:transparent}.filters{margin-top:26px}.filters label{display:block;color:var(--muted);font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;margin:14px 0 7px}select{width:100%;background:#0f2037;color:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;font-weight:800}.main{padding:24px 28px 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}.top h1{font-size:clamp(2rem,4vw,3.8rem);letter-spacing:-.065em;line-height:.95;margin:0}.top p{color:var(--muted);margin:8px 0 0}.pill{display:inline-flex;padding:9px 13px;border:1px solid #38d5ff44;background:#38d5ff12;border-radius:999px;color:#dff8ff;font-weight:950}.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(6,1fr)}.kpi,.card{background:linear-gradient(180deg,#ffffff10,#ffffff05),#0b1729cc;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:18px;position:relative;overflow:hidden}.kpi:before,.card:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 0,#38d5ff14,transparent 35%),radial-gradient(circle at 100% 100%,#ff7a1812,transparent 35%);pointer-events:none}.kpi>* ,.card>*{position:relative}.kpi small{color:var(--muted);font-weight:950}.kpi b{display:block;font-size:1.8rem;letter-spacing:-.04em}.kpi span{color:#b7ffd4;font-size:.78rem;font-weight:900}.layout{grid-template-columns:1.25fr .75fr}.layout2{grid-template-columns:.8fr 1.2fr}.card h2,.card h3{margin:0 0 14px;letter-spacing:-.04em}.chart{height:330px;display:flex;align-items:end;gap:10px;padding:22px 4px 36px;border-bottom:1px solid var(--line)}.bar{flex:1;min-height:12px;border-radius:12px 12px 3px 3px;background:linear-gradient(180deg,var(--cyan),#1452b8);position:relative;transition:.2s}.bar.hot{background:linear-gradient(180deg,#ffb000,var(--red))}.bar:hover{filter:brightness(1.25);transform:scaleY(1.02)}.bar i{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);font-style:normal;color:var(--muted);font-size:.72rem;font-weight:900}.bar span{position:absolute;top:calc(100% + 9px);left:50%;transform:translateX(-50%) rotate(-26deg);transform-origin:top;white-space:nowrap;font-size:.68rem;color:var(--muted);font-weight:900}.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid var(--line);padding:11px;text-align:left}.table th{font-size:.75rem;color:#dff8ff;text-transform:uppercase;letter-spacing:.08em}.table td{color:var(--muted);font-weight:800}.badge{border-radius:999px;padding:5px 9px;font-size:.72rem;font-weight:1000}.red{background:#ff3d5722;color:#ffb3bd}.orange{background:#ff7a1822;color:#ffd0ae}.green{background:#22c55e22;color:#b8ffd1}.map{height:420px;position:relative;background:linear-gradient(135deg,#0b253f,#10243e);border-radius:22px;overflow:hidden;border:1px solid var(--line)}.map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.65}.pin{position:absolute;transform:translate(-50%,-50%)}.pin:before{content:'';display:block;width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 8px #ff7a1830,0 0 30px #ff7a18}.pin.high:before{background:var(--red);box-shadow:0 0 0 8px #ff3d5730,0 0 30px #ff3d57}.pin.low:before{background:var(--cyan);box-shadow:0 0 0 8px #38d5ff30,0 0 30px #38d5ff}.pin label{position:absolute;top:21px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#020817e8;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:950}.donut{width:230px;height:230px;border-radius:50%;margin:auto;background:conic-gradient(var(--red) 0 18%,var(--orange) 18% 44%,var(--yellow) 44% 68%,var(--green) 68% 100%);position:relative}.donut:after{content:'Traffic\A Mix';white-space:pre;display:grid;place-items:center;text-align:center;position:absolute;inset:43px;border-radius:50%;background:#081322;font-weight:1000}.legend{display:grid;gap:10px;margin-top:20px}.legend div{display:flex;justify-content:space-between;color:var(--muted);font-weight:900}.page{display:none}.page.active{display:block}.download-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--orange),#ffb000);color:#120902;padding:12px 15px;border-radius:999px;font-weight:1000}.btn.cyan{background:linear-gradient(135deg,#1db9ff,var(--cyan));color:#02111d}.note{padding:14px;border-radius:18px;background:#38d5ff12;border:1px solid #38d5ff33;color:#d8f8ff;font-weight:800}.search{width:100%;background:#0f2037;color:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}@media(max-width:1100px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.kpis{grid-template-columns:repeat(3,1fr)}.layout,.layout2{grid-template-columns:1fr}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.nav button{margin:0}.main{padding:18px}}@media(max-width:700px){.kpis{grid-template-columns:1fr 1fr}.nav{grid-template-columns:1fr 1fr}.chart{gap:5px}.bar span{font-size:.58rem}.top{display:block}.side{padding:16px}.main{padding:14px}.kpi b{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="logo"></span><span>UrbanFlow<br><small style="color:var(--muted);font-size:.75rem">Interactive BI Dashboard</small></span></div>
+    <a class="back" href="index.html">← Back to Website</a>
+    <div class="nav">
+      <button class="active" data-page="exec">📊 Executive</button><button data-page="traffic">🚦 Traffic</button><button data-page="mobility">🧭 Mobility</button><button data-page="weather">🌧️ Weather</button><button data-page="safety">🛡️ Safety</button><button data-page="geo">🗺️ Geo Map</button>
+    </div>
+    <div class="filters"><label>Area Focus</label><select id="areaFilter"><option value="All">All Bengaluru Areas</option></select><label>Metric</label><select id="metric"><option value="congestion">Congestion Index</option><option value="avg_vehicle">Vehicle Count</option><option value="avg_speed">Average Speed</option><option value="avg_time">Travel Time</option><option value="risk">Accident Risk</option></select></div>
+    <p style="color:var(--muted);font-size:.84rem;margin-top:24px">This dashboard works directly on phone, tablet, and laptop browsers.</p>
+  </aside>
+  <main class="main">
+    <div class="top"><div><span class="pill">Bengaluru Traffic Analytics Dashboard</span><h1>UrbanFlow Command Center</h1><p>Interactive mobility insights from 100,000 traffic, weather and accident records.</p></div><div class="download-row"><a class="btn" href="downloads/urbanflow_bengaluru_project.zip" download>Download Project</a><a class="btn cyan" href="downloads/urbanflow_bengaluru_traffic.csv" download>CSV</a></div></div>
+    <section id="exec" class="page active"><div class="grid kpis" id="kpis"></div><br><div class="grid layout"><div class="card"><h2>Congestion Hotspots</h2><div id="areaChart" class="chart"></div></div><div class="card"><h2>Congestion Category Share</h2><div class="donut"></div><div class="legend"><div><span>Severe</span><b>18%</b></div><div><span>High</span><b>26%</b></div><div><span>Moderate</span><b>24%</b></div><div><span>Low</span><b>32%</b></div></div></div></div><br><div class="card"><h2>Area Performance Matrix</h2><div id="areaTable"></div></div></section>
+    <section id="traffic" class="page"><div class="grid layout"><div class="card"><h2>Hourly Traffic Trend</h2><div id="hourChart" class="chart"></div></div><div class="card"><h2>Peak Hour Finding</h2><p class="note">Evening commute between 5 PM and 8 PM shows the highest average vehicle load, followed by morning rush between 7 AM and 10 AM.</p><div id="peakTable"></div></div></div></section>
+    <section id="mobility" class="page"><div class="grid layout2"><div class="card"><h2>Route Reliability Ranking</h2><input id="routeSearch" class="search" placeholder="Search route or area..."><div id="routeTable"></div></div><div class="card"><h2>Speed vs Congestion</h2><div id="mobilityChart" class="chart"></div></div></div></section>
+    <section id="weather" class="page"><div class="grid layout"><div class="card"><h2>Weather Impact on Speed</h2><div id="weatherChart" class="chart"></div></div><div class="card"><h2>Weather Delay Table</h2><div id="weatherTable"></div></div></div></section>
+    <section id="safety" class="page"><div class="grid layout"><div class="card"><h2>Accident Hotspots</h2><div id="accidentChart" class="chart"></div></div><div class="card"><h2>Safety Risk Matrix</h2><div id="riskTable"></div></div></div></section>
+    <section id="geo" class="page"><div class="grid layout"><div class="card"><h2>Bengaluru Geospatial Layer</h2><div class="map" id="map"><svg viewBox="0 0 600 420" preserveAspectRatio="none"><path d="M38 312 C128 238 178 250 234 166 S390 68 558 104" stroke="#38d5ff" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M108 58 C165 138 240 170 316 258 S435 326 565 270" stroke="#ff7a18" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M50 205 L565 205" stroke="#94a3b8" stroke-width="8" fill="none" stroke-linecap="round" opacity=".55"/><path d="M302 38 L282 382" stroke="#94a3b8" stroke-width="8" fill="none" stroke-linecap="round" opacity=".55"/></svg></div></div><div class="card"><h2>Map Interpretation</h2><p class="note">Pins are positioned conceptually across Bengaluru. Red pins indicate highest congestion/risk corridors; cyan pins indicate relatively better performing zones.</p><div id="mapTable"></div></div></div></section>
+  </main>
+</div>
+<script id="summary" type="application/json">{
+  "kpis": {
+    "records": 100000,
+    "avg_vehicle": 3288.63,
+    "avg_speed": 27.39,
+    "avg_time": 19.71,
+    "congestion": 0.707,
+    "reliability": 0.697,
+    "accident_rate": 0.99,
+    "accidents": 991
+  },
+  "area": [
+    {
+      "area": "Banashankari",
+      "records": 6987,
+      "avg_vehicle": 1784.31,
+      "avg_speed": 24.239,
+      "avg_time": 20.912,
+      "congestion": 0.558,
+      "reliability": 0.771,
+      "risk": 35.886,
+      "accidents": 66,
+      "lat": 12.925,
+      "lon": 77.547
+    },
+    {
+      "area": "Electronic City",
+      "records": 9111,
+      "avg_vehicle": 4176.98,
+      "avg_speed": 35.22,
+      "avg_time": 14.82,
+      "congestion": 0.696,
+      "reliability": 0.701,
+      "risk": 46.13,
+      "accidents": 94,
+      "lat": 12.845,
+      "lon": 77.66
+    },
+    {
+      "area": "Hebbal",
+      "records": 7900,
+      "avg_vehicle": 4024.971,
+      "avg_speed": 34.894,
+      "avg_time": 15.028,
+      "congestion": 0.706,
+      "reliability": 0.695,
+      "risk": 46.643,
+      "accidents": 68,
+      "lat": 13.036,
+      "lon": 77.597
+    },
+    {
+      "area": "Indiranagar",
+      "records": 6945,
+      "avg_vehicle": 2131.599,
+      "avg_speed": 23.083,
+      "avg_time": 22.425,
+      "congestion": 0.627,
+      "reliability": 0.735,
+      "risk": 38.97,
+      "accidents": 72,
+      "lat": 12.979,
+      "lon": 77.641
+    },
+    {
+      "area": "Jayanagar",
+      "records": 6093,
+      "avg_vehicle": 1921.744,
+      "avg_speed": 23.722,
+      "avg_time": 21.493,
+      "congestion": 0.582,
+      "reliability": 0.756,
+      "risk": 37.039,
+      "accidents": 56,
+      "lat": 12.925,
+      "lon": 77.594
+    },
+    {
+      "area": "KR Puram",
+      "records": 8944,
+      "avg_vehicle": 4170.31,
+      "avg_speed": 34.054,
+      "avg_time": 15.646,
+      "congestion": 0.745,
+      "reliability": 0.677,
+      "risk": 48.245,
+      "accidents": 100,
+      "lat": 13.008,
+      "lon": 77.695
+    },
+    {
+      "area": "Koramangala",
+      "records": 9097,
+      "avg_vehicle": 2412.446,
+      "avg_speed": 22.1,
+      "avg_time": 23.669,
+      "congestion": 0.689,
+      "reliability": 0.705,
+      "risk": 41.832,
+      "accidents": 83,
+      "lat": 12.935,
+      "lon": 77.624
+    },
+    {
+      "area": "MG Road",
+      "records": 7090,
+      "avg_vehicle": 2419.583,
+      "avg_speed": 22.334,
+      "avg_time": 23.209,
+      "congestion": 0.672,
+      "reliability": 0.712,
+      "risk": 41.137,
+      "accidents": 72,
+      "lat": 12.975,
+      "lon": 77.607
+    },
+    {
+      "area": "Marathahalli",
+      "records": 9914,
+      "avg_vehicle": 3845.448,
+      "avg_speed": 25.994,
+      "avg_time": 20.71,
+      "congestion": 0.801,
+      "reliability": 0.654,
+      "risk": 48.861,
+      "accidents": 92,
+      "lat": 12.957,
+      "lon": 77.701
+    },
+    {
+      "area": "Silk Board",
+      "records": 11064,
+      "avg_vehicle": 4443.04,
+      "avg_speed": 25.218,
+      "avg_time": 21.474,
+      "congestion": 0.854,
+      "reliability": 0.634,
+      "risk": 51.081,
+      "accidents": 109,
+      "lat": 12.918,
+      "lon": 77.623
+    },
+    {
+      "area": "Whitefield",
+      "records": 9921,
+      "avg_vehicle": 3816.556,
+      "avg_speed": 26.605,
+      "avg_time": 20.176,
+      "congestion": 0.763,
+      "reliability": 0.669,
+      "risk": 47.231,
+      "accidents": 110,
+      "lat": 12.97,
+      "lon": 77.75
+    },
+    {
+      "area": "Yeshwanthpur",
+      "records": 6934,
+      "avg_vehicle": 2665.652,
+      "avg_speed": 29.317,
+      "avg_time": 17.512,
+      "congestion": 0.62,
+      "reliability": 0.737,
+      "risk": 40.617,
+      "accidents": 69,
+      "lat": 13.025,
+      "lon": 77.534
+    }
+  ],
+  "hour": [
+    {
+      "hour": 0,
+      "avg_vehicle": 1191.44,
+      "avg_speed": 34.615,
+      "avg_time": 14.493,
+      "congestion": 0.255
+    },
+    {
+      "hour": 1,
+      "avg_vehicle": 1193.711,
+      "avg_speed": 34.606,
+      "avg_time": 14.544,
+      "congestion": 0.256
+    },
+    {
+      "hour": 2,
+      "avg_vehicle": 1184.77,
+      "avg_speed": 34.605,
+      "avg_time": 14.652,
+      "congestion": 0.255
+    },
+    {
+      "hour": 3,
+      "avg_vehicle": 1191.306,
+      "avg_speed": 34.852,
+      "avg_time": 14.445,
+      "congestion": 0.255
+    },
+    {
+      "hour": 4,
+      "avg_vehicle": 1189.402,
+      "avg_speed": 34.721,
+      "avg_time": 14.494,
+      "congestion": 0.255
+    },
+    {
+      "hour": 5,
+      "avg_vehicle": 1195.596,
+      "avg_speed": 34.682,
+      "avg_time": 14.422,
+      "congestion": 0.256
+    },
+    {
+      "hour": 6,
+      "avg_vehicle": 2556.347,
+      "avg_speed": 32.726,
+      "avg_time": 15.437,
+      "congestion": 0.551
+    },
+    {
+      "hour": 7,
+      "avg_vehicle": 4840.913,
+      "avg_speed": 20.917,
+      "avg_time": 24.72,
+      "congestion": 1.037
+    },
+    {
+      "hour": 8,
+      "avg_vehicle": 4852.162,
+      "avg_speed": 20.747,
+      "avg_time": 24.682,
+      "congestion": 1.042
+    },
+    {
+      "hour": 9,
+      "avg_vehicle": 4791.906,
+      "avg_speed": 20.816,
+      "avg_time": 24.878,
+      "congestion": 1.036
+    },
+    {
+      "hour": 10,
+      "avg_vehicle": 4860.697,
+      "avg_speed": 20.78,
+      "avg_time": 24.713,
+      "congestion": 1.043
+    },
+    {
+      "hour": 11,
+      "avg_vehicle": 3580.59,
+      "avg_speed": 26.401,
+      "avg_time": 19.257,
+      "congestion": 0.772
+    },
+    {
+      "hour": 12,
+      "avg_vehicle": 3629.532,
+      "avg_speed": 26.228,
+      "avg_time": 19.536,
+      "congestion": 0.783
+    },
+    {
+      "hour": 13,
+      "avg_vehicle": 3654.075,
+      "avg_speed": 26.232,
+      "avg_time": 19.38,
+      "congestion": 0.785
+    },
+    {
+      "hour": 14,
+      "avg_vehicle": 3643.203,
+      "avg_speed": 26.055,
+      "avg_time": 19.478,
+      "congestion": 0.786
+    },
+    {
+      "hour": 15,
+      "avg_vehicle": 3647.608,
+      "avg_speed": 26.597,
+      "avg_time": 19.155,
+      "congestion": 0.78
+    },
+    {
+      "hour": 16,
+      "avg_vehicle": 3679.454,
+      "avg_speed": 26.2,
+      "avg_time": 19.373,
+      "congestion": 0.789
+    },
+    {
+      "hour": 17,
+      "avg_vehicle": 5454.567,
+      "avg_speed": 18.693,
+      "avg_time": 27.668,
+      "congestion": 1.17
+    },
+    {
+      "hour": 18,
+      "avg_vehicle": 5424.692,
+      "avg_speed": 18.925,
+      "avg_time": 27.361,
+      "congestion": 1.164
+    },
+    {
+      "hour": 19,
+      "avg_vehicle": 5412.801,
+      "avg_speed": 18.747,
+      "avg_time": 27.614,
+      "congestion": 1.165
+    },
+    {
+      "hour": 20,
+      "avg_vehicle": 5408.57,
+      "avg_speed": 18.988,
+      "avg_time": 27.352,
+      "congestion": 1.16
+    },
+    {
+      "hour": 21,
+      "avg_vehicle": 2595.805,
+      "avg_speed": 32.645,
+      "avg_time": 15.529,
+      "congestion": 0.559
+    },
+    {
+      "hour": 22,
+      "avg_vehicle": 2537.108,
+      "avg_speed": 32.737,
+      "avg_time": 15.411,
+      "congestion": 0.55
+    },
+    {
+      "hour": 23,
+      "avg_vehicle": 1195.916,
+      "avg_speed": 34.799,
+      "avg_time": 14.463,
+      "congestion": 0.256
+    }
+  ],
+  "weather": [
+    {
+      "weather_condition": "Clear",
+      "records": 47996,
+      "avg_speed": 30.189,
+      "avg_time": 17.241,
+      "congestion": 0.684,
+      "rainfall": 0.0,
+      "reliability": 0.768
+    },
+    {
+      "weather_condition": "Cloudy",
+      "records": 23963,
+      "avg_speed": 28.402,
+      "avg_time": 18.465,
+      "congestion": 0.698,
+      "rainfall": 0.2,
+      "reliability": 0.724
+    },
+    {
+      "weather_condition": "Fog",
+      "records": 3011,
+      "avg_speed": 20.069,
+      "avg_time": 26.425,
+      "congestion": 0.759,
+      "rainfall": 0.0,
+      "reliability": 0.513
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "records": 7999,
+      "avg_speed": 17.467,
+      "avg_time": 30.865,
+      "congestion": 0.788,
+      "rainfall": 18.078,
+      "reliability": 0.445
+    },
+    {
+      "weather_condition": "Light Rain",
+      "records": 17031,
+      "avg_speed": 24.012,
+      "avg_time": 21.984,
+      "congestion": 0.735,
+      "rainfall": 3.185,
+      "reliability": 0.61
+    }
+  ],
+  "month": [
+    {
+      "month": 1,
+      "month_name": "Jan",
+      "avg_vehicle": 3309.477,
+      "avg_speed": 27.258,
+      "avg_time": 19.717,
+      "congestion": 0.71,
+      "accidents": 101
+    },
+    {
+      "month": 2,
+      "month_name": "Feb",
+      "avg_vehicle": 3295.917,
+      "avg_speed": 27.307,
+      "avg_time": 19.688,
+      "congestion": 0.709,
+      "accidents": 70
+    },
+    {
+      "month": 3,
+      "month_name": "Mar",
+      "avg_vehicle": 3258.301,
+      "avg_speed": 27.455,
+      "avg_time": 19.619,
+      "congestion": 0.702,
+      "accidents": 90
+    },
+    {
+      "month": 4,
+      "month_name": "Apr",
+      "avg_vehicle": 3301.821,
+      "avg_speed": 27.36,
+      "avg_time": 19.825,
+      "congestion": 0.71,
+      "accidents": 81
+    },
+    {
+      "month": 5,
+      "month_name": "May",
+      "avg_vehicle": 3270.841,
+      "avg_speed": 27.486,
+      "avg_time": 19.594,
+      "congestion": 0.706,
+      "accidents": 90
+    },
+    {
+      "month": 6,
+      "month_name": "Jun",
+      "avg_vehicle": 3285.821,
+      "avg_speed": 27.491,
+      "avg_time": 19.778,
+      "congestion": 0.706,
+      "accidents": 85
+    },
+    {
+      "month": 7,
+      "month_name": "Jul",
+      "avg_vehicle": 3282.193,
+      "avg_speed": 27.577,
+      "avg_time": 19.569,
+      "congestion": 0.704,
+      "accidents": 86
+    },
+    {
+      "month": 8,
+      "month_name": "Aug",
+      "avg_vehicle": 3259.298,
+      "avg_speed": 27.46,
+      "avg_time": 19.574,
+      "congestion": 0.701,
+      "accidents": 90
+    },
+    {
+      "month": 9,
+      "month_name": "Sep",
+      "avg_vehicle": 3291.234,
+      "avg_speed": 27.56,
+      "avg_time": 19.595,
+      "congestion": 0.704,
+      "accidents": 74
+    },
+    {
+      "month": 10,
+      "month_name": "Oct",
+      "avg_vehicle": 3290.192,
+      "avg_speed": 27.242,
+      "avg_time": 19.729,
+      "congestion": 0.709,
+      "accidents": 69
+    },
+    {
+      "month": 11,
+      "month_name": "Nov",
+      "avg_vehicle": 3314.438,
+      "avg_speed": 27.287,
+      "avg_time": 19.829,
+      "congestion": 0.711,
+      "accidents": 86
+    },
+    {
+      "month": 12,
+      "month_name": "Dec",
+      "avg_vehicle": 3305.789,
+      "avg_speed": 27.157,
+      "avg_time": 19.987,
+      "congestion": 0.712,
+      "accidents": 69
+    }
+  ],
+  "routes": [
+    {
+      "route_name": "BTM Layout - Silk Board - HSR Layout",
+      "area": "Silk Board",
+      "avg_speed": 25.218,
+      "avg_time": 21.474,
+      "congestion": 0.854,
+      "reliability": 0.634,
+      "efficiency": 50.19,
+      "risk": 51.081
+    },
+    {
+      "route_name": "Domlur - Indiranagar - Old Madras Road",
+      "area": "Indiranagar",
+      "avg_speed": 23.083,
+      "avg_time": 22.425,
+      "congestion": 0.627,
+      "reliability": 0.735,
+      "efficiency": 58.56,
+      "risk": 38.97
+    },
+    {
+      "route_name": "HAL - Marathahalli - Whitefield",
+      "area": "Marathahalli",
+      "avg_speed": 25.994,
+      "avg_time": 20.71,
+      "congestion": 0.801,
+      "reliability": 0.654,
+      "efficiency": 53.98,
+      "risk": 48.861
+    },
+    {
+      "route_name": "Jayanagar - Banashankari - Uttarahalli",
+      "area": "Banashankari",
+      "avg_speed": 24.239,
+      "avg_time": 20.912,
+      "congestion": 0.558,
+      "reliability": 0.771,
+      "efficiency": 67.21,
+      "risk": 35.886
+    },
+    {
+      "route_name": "KR Puram - Whitefield - ITPL",
+      "area": "Whitefield",
+      "avg_speed": 26.605,
+      "avg_time": 20.176,
+      "congestion": 0.763,
+      "reliability": 0.669,
+      "efficiency": 58.099,
+      "risk": 47.231
+    },
+    {
+      "route_name": "Mekhri Circle - Hebbal - Airport Road",
+      "area": "Hebbal",
+      "avg_speed": 34.894,
+      "avg_time": 15.028,
+      "congestion": 0.706,
+      "reliability": 0.695,
+      "efficiency": 80.544,
+      "risk": 46.643
+    },
+    {
+      "route_name": "Silk Board - Hosur Road - Electronic City",
+      "area": "Electronic City",
+      "avg_speed": 35.22,
+      "avg_time": 14.82,
+      "congestion": 0.696,
+      "reliability": 0.701,
+      "efficiency": 82.33,
+      "risk": 46.13
+    },
+    {
+      "route_name": "Sony Signal - Koramangala - Ejipura",
+      "area": "Koramangala",
+      "avg_speed": 22.1,
+      "avg_time": 23.669,
+      "congestion": 0.689,
+      "reliability": 0.705,
+      "efficiency": 51.419,
+      "risk": 41.832
+    },
+    {
+      "route_name": "South End Circle - Jayanagar - JP Nagar",
+      "area": "Jayanagar",
+      "avg_speed": 23.722,
+      "avg_time": 21.493,
+      "congestion": 0.582,
+      "reliability": 0.756,
+      "efficiency": 63.556,
+      "risk": 37.039
+    },
+    {
+      "route_name": "Tin Factory - KR Puram - Whitefield",
+      "area": "KR Puram",
+      "avg_speed": 34.054,
+      "avg_time": 15.646,
+      "congestion": 0.745,
+      "reliability": 0.677,
+      "efficiency": 75.594,
+      "risk": 48.245
+    },
+    {
+      "route_name": "Trinity - MG Road - Cubbon Road",
+      "area": "MG Road",
+      "avg_speed": 22.334,
+      "avg_time": 23.209,
+      "congestion": 0.672,
+      "reliability": 0.712,
+      "efficiency": 52.917,
+      "risk": 41.137
+    },
+    {
+      "route_name": "Tumkur Road - Yeshwanthpur - Rajajinagar",
+      "area": "Yeshwanthpur",
+      "avg_speed": 29.317,
+      "avg_time": 17.512,
+      "congestion": 0.62,
+      "reliability": 0.737,
+      "efficiency": 75.165,
+      "risk": 40.617
+    }
+  ],
+  "cat": [
+    {
+      "congestion_category": "High",
+      "count": 18071
+    },
+    {
+      "congestion_category": "Low",
+      "count": 44318
+    },
+    {
+      "congestion_category": "Moderate",
+      "count": 24245
+    },
+    {
+      "congestion_category": "Severe",
+      "count": 13366
+    }
+  ],
+  "severity": [
+    {
+      "accident_severity": "Minor",
+      "count": 615
+    },
+    {
+      "accident_severity": "Moderate",
+      "count": 285
+    },
+    {
+      "accident_severity": "Severe",
+      "count": 91
+    }
+  ]
+}</script>
+<script>
+const data=JSON.parse(document.getElementById('summary').textContent);const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+const areaFilter=document.getElementById('areaFilter'),metric=document.getElementById('metric');data.area.map(x=>x.area).sort().forEach(a=>areaFilter.innerHTML+=`<option>${a}</option>`);
+function filteredAreas(){let arr=[...data.area];if(areaFilter.value!=='All')arr=arr.filter(x=>x.area===areaFilter.value);return arr}
+function bars(el,arr,label,val,opts={}){const max=Math.max(...arr.map(x=>+x[val]));document.getElementById(el).innerHTML=arr.map(x=>`<div class="bar ${(+x[val]/max>.82||opts.hot)?'hot':''}" style="height:${Math.max(8,+x[val]/max*100)}%"><i>${fmt(x[val])}</i><span>${x[label]}</span></div>`).join('')}
+function table(el,cols,arr,limit=12){document.getElementById(el).innerHTML=`<table class="table"><thead><tr>${cols.map(c=>`<th>${c[0]}</th>`).join('')}</tr></thead><tbody>${arr.slice(0,limit).map(r=>`<tr>${cols.map(c=>`<td>${c[2]?c[2](r[c[1]],r):fmtOrText(r[c[1]])}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
+function fmtOrText(v){return typeof v==='number'?fmt(v):v}
+function kpis(){let base=areaFilter.value==='All'?data.kpis:null;if(base){document.getElementById('kpis').innerHTML=`<div class="kpi"><small>Total Records</small><b>${fmt(base.records)}</b><span>Portfolio scale</span></div><div class="kpi"><small>Avg Vehicles</small><b>${fmt(base.avg_vehicle)}</b><span>Network load</span></div><div class="kpi"><small>Avg Speed</small><b>${fmt(base.avg_speed)}</b><span>km/h</span></div><div class="kpi"><small>Travel Time</small><b>${fmt(base.avg_time)}</b><span>minutes</span></div><div class="kpi"><small>Congestion</small><b>${fmt(base.congestion)}</b><span>index</span></div><div class="kpi"><small>Accident Rate</small><b>${fmt(base.accident_rate)}%</b><span>${fmt(base.accidents)} accidents</span></div>`}else{let a=filteredAreas()[0];document.getElementById('kpis').innerHTML=`<div class="kpi"><small>Area Records</small><b>${fmt(a.records)}</b><span>${a.area}</span></div><div class="kpi"><small>Avg Vehicles</small><b>${fmt(a.avg_vehicle)}</b><span>Network load</span></div><div class="kpi"><small>Avg Speed</small><b>${fmt(a.avg_speed)}</b><span>km/h</span></div><div class="kpi"><small>Travel Time</small><b>${fmt(a.avg_time)}</b><span>minutes</span></div><div class="kpi"><small>Congestion</small><b>${fmt(a.congestion)}</b><span>index</span></div><div class="kpi"><small>Accidents</small><b>${fmt(a.accidents)}</b><span>risk ${fmt(a.risk)}</span></div>`}}
+function render(){kpis();let areas=filteredAreas().sort((a,b)=>b[metric.value]-a[metric.value]);bars('areaChart',areas.slice(0,10),'area',metric.value);table('areaTable',[['Area','area'],['Vehicles','avg_vehicle'],['Speed','avg_speed'],['Travel Time','avg_time'],['Congestion','congestion'],['Reliability','reliability'],['Risk','risk'],['Accidents','accidents']],areas,12);bars('hourChart',data.hour,'hour','avg_vehicle');table('peakTable',[['Hour','hour'],['Avg Vehicles','avg_vehicle'],['Congestion','congestion'],['Avg Time','avg_time']],data.hour.slice().sort((a,b)=>b.avg_vehicle-a.avg_vehicle),8);let routes=[...data.routes].sort((a,b)=>b.reliability-a.reliability);if(areaFilter.value!=='All')routes=routes.filter(r=>r.area===areaFilter.value);table('routeTable',[['Route','route_name'],['Area','area'],['Speed','avg_speed'],['Travel Time','avg_time'],['Reliability','reliability'],['Efficiency','efficiency']],routes,10);bars('mobilityChart',areas.slice().sort((a,b)=>a.avg_speed-b.avg_speed).slice(0,10),'area','avg_speed');bars('weatherChart',data.weather.slice().sort((a,b)=>a.avg_speed-b.avg_speed),'weather_condition','avg_speed',{hot:true});table('weatherTable',[['Condition','weather_condition'],['Records','records'],['Speed','avg_speed'],['Travel Time','avg_time'],['Rainfall','rainfall'],['Reliability','reliability']],data.weather.slice().sort((a,b)=>b.avg_time-a.avg_time),8);bars('accidentChart',areas.slice().sort((a,b)=>b.accidents-a.accidents).slice(0,10),'area','accidents',{hot:true});table('riskTable',[['Area','area'],['Risk','risk'],['Accidents','accidents'],['Congestion','congestion'],['Status','risk',(v)=>v>50?'<span class="badge red">High</span>':v>45?'<span class="badge orange">Watch</span>':'<span class="badge green">Stable</span>']],areas.slice().sort((a,b)=>b.risk-a.risk),12);renderMap(areas);}
+function renderMap(areas){const map=document.getElementById('map');map.querySelectorAll('.pin').forEach(p=>p.remove());const coords={'Silk Board':[45,53],'Marathahalli':[66,38],'Whitefield':[80,29],'KR Puram':[71,22],'Electronic City':[42,77],'Hebbal':[38,22],'MG Road':[49,43],'Indiranagar':[57,42],'Jayanagar':[40,58],'Yeshwanthpur':[31,29],'Koramangala':[47,55],'Banashankari':[34,65]};areas.forEach(a=>{let c=coords[a.area]||[50,50],cls=a.congestion>.8?'high':a.congestion<.7?'low':'';map.insertAdjacentHTML('beforeend',`<div class="pin ${cls}" style="left:${c[0]}%;top:${c[1]}%"><label>${a.area}</label></div>`)});table('mapTable',[['Area','area'],['Congestion','congestion'],['Risk','risk'],['Speed','avg_speed']],areas.slice().sort((a,b)=>b.congestion-a.congestion),12)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button,.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.page).classList.add('active')});areaFilter.onchange=render;metric.onchange=render;document.addEventListener('input',e=>{if(e.target.id==='routeSearch'){let q=e.target.value.toLowerCase();let routes=data.routes.filter(r=>(r.route_name+r.area).toLowerCase().includes(q));table('routeTable',[['Route','route_name'],['Area','area'],['Speed','avg_speed'],['Travel Time','avg_time'],['Reliability','reliability'],['Efficiency','efficiency']],routes,10)}});render();
+</script>
+</body>
+</html>
